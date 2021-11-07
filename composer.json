@@ -12,7 +12,7 @@
         "symfony","move","copy","remove","delete","sanitize","spaces","clean","extension","file","bundle","service","cadot.info"
         
       ],
-    "license": "",
+    "license": "proprietary",
     "autoload": {
       "psr-4": {
         "Cadotinfo\\FileBundle\\": "src/"
