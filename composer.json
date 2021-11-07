@@ -1,0 +1,29 @@
+{
+    "name": "cadot.info/fileservice",
+    "description": "Functions on files for Symfony 5",
+    "type": "library",
+    "require": {
+      "php": ">=7.2.5"
+     
+  }
+  ,
+  "homepage": "https://github.com/cadot-info/tools#readme",
+      "keywords": [
+        
+      ],
+    "license": "MIT",
+    "autoload": {
+      "psr-4": {
+        "Cadotinfo\\FileService\\": "src/"
+      }
+    },
+    "authors": [
+      {
+        "name": "cadot.info",
+        "email": "composer@cadot.info"
+      }
+    ],
+  
+    "minimum-stability": "dev"
+  }
+  
