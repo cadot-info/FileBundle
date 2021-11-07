@@ -9,9 +9,10 @@
   ,
   "homepage": "https://github.com/cadot-info/tools#readme",
       "keywords": [
+        "symfony","move","copy","remove","delete","sanitize","spaces","clean","extension","file","bundle","service","cadot.info"
         
       ],
-    "license": "MIT",
+    "license": "",
     "autoload": {
       "psr-4": {
         "Cadotinfo\\FileBundle\\": "src/"

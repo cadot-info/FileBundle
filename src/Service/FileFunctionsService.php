@@ -1,19 +1,56 @@
 <?php
+/*
+ * Created on Sun Nov 07 2021 Cadot.info,licence webmestre@cadot.info
+ * 
+ * many licences
+ *
+ *
+ *-------------------------------------------------------------------------- *
+ *      FileFunctionsService.php *
+ * -------------------------------------------------------------------------- *
+ *
+ * Usage:
+ * - extension (name of file)             extract extension of filename
+ * - copydir(source, destination)         copy a directory recursively  
+ * - deletedir(directory)                 remove directory recursively
+ * - movedir (directory)                  move directory with recursivity
+ * - sanitize (filename, remove space?)   clean a filename
+ * - beautify (filename)                  for remove space in string
+ *
+ * Source on:many website, i can add copyrigth, mail me, thanks
+ */
 
 namespace Cadotinfo\FileBundle\Service;
 
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * FileFunctionsService
+ * functions manipulate file for symfony 5
+ */
 class FileFunctionsService
 {
-    // pour extraire l'extension d'un fichier
-    public function extension($file): string
+
+    /**
+     * extension extract of filename
+     *
+     * @param  string $filename
+     * @return string extension without point
+     */
+    public function extension(string $filename): string
     {
-        return (strtolower(pathinfo($file, PATHINFO_EXTENSION)));
+        return (strtolower(pathinfo($filename, PATHINFO_EXTENSION)));
     }
 
-    // for copy dir with recursivity
-    function copydir($src, $dst)
+
+    /**
+     * copydir for copy dir with recursivity
+     *
+     * @param  string $src source directory
+     * @param  string $dst destination
+     * @return bool
+     */
+    function copydir(string $src, string $dst): bool
     {
         $dir = opendir($src);
         @mkdir($dst);
@@ -22,14 +59,22 @@ class FileFunctionsService
                 if (is_dir($src . '/' . $file)) {
                     $this->copydir($src . '/' . $file, $dst . '/' . $file);
                 } else {
-                    $this->copy($src . '/' . $file, $dst . '/' . $file);
+                    copy($src . '/' . $file, $dst . '/' . $file);
                 }
             }
         }
         closedir($dir);
+        return file_exists($dir);
     }
-    //remove dir with recursivity
-    function deletedir($dir)
+
+
+    /**
+     * deletedir remove dir with recursivity
+     *
+     * @param  string $dir
+     * @return bool
+     */
+    function deletedir(string $dir): bool
     {
         if (!file_exists($dir)) {
             return true;
@@ -51,8 +96,15 @@ class FileFunctionsService
 
         return rmdir($dir);
     }
-    //move directory with recursivity
-    function movedir($origine, $destination)
+
+    /**
+     * movedir move directory with recursivity
+     *
+     * @param  string $origine
+     * @param  string $destination
+     * @return bool
+     */
+    function movedir(string $origine, string $destination): bool
     {
 
         //création des réperoitre de destination s'il n'existe pas
@@ -64,11 +116,18 @@ class FileFunctionsService
             if (!file_exists($ddir)) mkdir($ddir);
         }
         rename($origine, $destination);
+        return file_exists($destination);
     }
-    /* ------------------------------------------------------------------------------------------------------------------ */
-    /*                                                                                POUR AVOIR UN NOM DE FICHIER PROPRE */
-    /* ------------------------------------------------------------------------------------------------------------------ */
-    function sanitize($filename, $beautify = true)
+
+    /**
+     * sanitize cleaner of filename, remove many character
+     * option for remove spaces
+     *
+     * @param  string $filename
+     * @param  bool $beautify for remove sapce
+     * @return string
+     */
+    function sanitize(string $filename, bool $beautify = true): string
     {
         // sanitize filename
         $filename = preg_replace(
@@ -91,10 +150,14 @@ class FileFunctionsService
         $filename = mb_strcut(pathinfo($filename, PATHINFO_FILENAME), 0, 255 - ($ext ? strlen($ext) + 1 : 0), mb_detect_encoding($filename)) . ($ext ? '.' . $ext : '');
         return $filename;
     }
-    /* ------------------------------------------------------------------------------------------------------------------ */
-    /*                                                                       POUR RENDRE LE NOM DE FICHIER SANS ESPACE... */
-    /* ------------------------------------------------------------------------------------------------------------------ */
-    function beautify($filename)
+
+    /**
+     * beautify remove space in filename or string
+     *
+     * @param  mixed $filename
+     * @return string
+     */
+    function beautify(string $filename): string
     {
         // reduce consecutive characters
         $filename = preg_replace(array(
