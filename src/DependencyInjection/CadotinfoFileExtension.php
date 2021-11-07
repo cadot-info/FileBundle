@@ -1,6 +1,6 @@
 <?php
 
-namespace Cadotinfo\CrudBundle\DependencyInjection;
+namespace Cadotinfo\FileBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
-class CadotinfoCrudExtension extends Extension implements PrependExtensionInterface
+class CadotinfoFileExtension extends Extension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container)
     {

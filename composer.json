@@ -1,5 +1,5 @@
 {
-    "name": "cadot.info/fileservice",
+    "name": "cadot.info/filebundle",
     "description": "Functions on files for Symfony 5",
     "type": "library",
     "require": {
@@ -14,7 +14,7 @@
     "license": "MIT",
     "autoload": {
       "psr-4": {
-        "Cadotinfo\\FileService\\": "src/"
+        "Cadotinfo\\FileBundle\\": "src/"
       }
     },
     "authors": [
