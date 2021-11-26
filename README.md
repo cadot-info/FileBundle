@@ -2,6 +2,7 @@
 
 Functions for manipulate files
 
+
 - extension (name of file)             extract extension of filename
 - copydir(source, destination)         copy a directory recursively  
 - deletedir(directory)                 remove directory recursively
